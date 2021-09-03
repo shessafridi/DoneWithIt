@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Image, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
+
+import colors from '../config/colors';
 
 function ViewImage(props) {
   return (
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#000',
+    backgroundColor: colors.black,
   },
   image: {
     height: '100%',
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     position: 'absolute',
-    backgroundColor: '#fc5c65',
+    backgroundColor: colors.primary,
     top: 40,
     left: 30,
   },
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     position: 'absolute',
-    backgroundColor: '#4ecdc4',
+    backgroundColor: colors.secondary,
     top: 40,
     right: 30,
   },
