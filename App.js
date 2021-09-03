@@ -1,14 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import Login from './components/Login';
+import WelcomeScreen from './app/screens/WelcomeScreen';
+import ViewImage from './app/screens/ViewImage';
 
 export default function App() {
-  return (
-    <View style={styles.wrapper}>
-      <Login />
-    </View>
-  );
+  return <ViewImage />;
 }
 
 const styles = StyleSheet.create({
