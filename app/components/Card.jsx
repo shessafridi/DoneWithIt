@@ -10,7 +10,7 @@ function Card({ title = '', subTitle = '', image }) {
       {image && (
         <Image resizeMode='cover' style={styles.image} source={image} />
       )}
-      <View style={styles.cardBody}>
+      <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle}>{subTitle}</AppText>
       </View>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.4,
   },
-  cardBody: {
+  detailsContainer: {
     padding: 20,
   },
   image: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   subTitle: {
-    color: colors.accent,
+    color: colors.secondary,
     marginTop: 4,
     fontWeight: 'bold',
   },
