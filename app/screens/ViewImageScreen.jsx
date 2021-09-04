@@ -1,13 +1,23 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 
 function ViewImage(props) {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.closeButton}></View>
-      <View style={styles.deleteButton}></View>
+      <View style={styles.closeButton}>
+        <MaterialCommunityIcons color='#fff' size={20} name='close' />
+      </View>
+      <View style={styles.deleteButton}>
+        <MaterialCommunityIcons
+          color='#fff'
+          size={20}
+          name='trash-can-outline'
+        />
+      </View>
+
       <Image
         style={styles.image}
         resizeMode='contain'
@@ -31,17 +41,19 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     position: 'absolute',
-    backgroundColor: colors.primary,
     top: 40,
-    left: 30,
+    left: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   deleteButton: {
     width: 50,
     height: 50,
     position: 'absolute',
-    backgroundColor: colors.secondary,
     top: 40,
-    right: 30,
+    right: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default ViewImage;
