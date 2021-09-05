@@ -6,6 +6,7 @@ import ViewImage from './app/screens/ViewImageScreen';
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 import Card from './app/components/Card';
 import colors from './app/config/colors';
+import MessagesScreen from './app/screens/MessagesScreen';
 
 export default function App() {
   return (
@@ -29,7 +30,7 @@ export default function App() {
     // </View>
 
     // <WelcomeScreen />
-    <ListingDetailsScreen />
+    <MessagesScreen />
   );
 }
 
