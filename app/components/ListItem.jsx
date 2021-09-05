@@ -15,10 +15,13 @@ function ListItem({
   subTitle = '',
   onPress = () => {},
   image,
+  IconComponent,
   renderRightActions,
 }) {
   return (
     <Swipeable
+      useNativeAnimations={true}
+      enabled={!!renderRightActions}
       overshootFriction={8}
       overshootRight={false}
       overshootLeft={false}
@@ -26,10 +29,13 @@ function ListItem({
     >
       <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.container}>
-          <Image resizeMode='cover' style={styles.image} source={image} />
-          <View>
+          {IconComponent}
+          {image && (
+            <Image resizeMode='cover' style={styles.image} source={image} />
+          )}
+          <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.subTitle}>{subTitle}</AppText>
+            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -41,18 +47,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 15,
+    backgroundColor: colors.white,
+  },
+  detailsContainer: {
+    marginLeft: 10,
+    justifyContent: 'center',
   },
   image: {
     width: 70,
     height: 70,
     borderRadius: 50,
-    marginRight: 10,
   },
   title: {
     fontWeight: '500',
   },
   subTitle: {
     color: colors.medium,
+    fontSize: 16,
   },
 });
 
