@@ -8,6 +8,7 @@ import Card from './app/components/Card';
 import colors from './app/config/colors';
 import MessagesScreen from './app/screens/MessagesScreen';
 import AccountScreen from './app/screens/AccountScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
 
 export default function App() {
   return (
@@ -32,7 +33,8 @@ export default function App() {
 
     // <WelcomeScreen />
     // <MessagesScreen />
-    <AccountScreen />
+    // <AccountScreen />
+    <ListingsScreen />
   );
 }
 

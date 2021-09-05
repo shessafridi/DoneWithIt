@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
 
     // Shadows
-    elevation: 3,
+    elevation: 1,
     shadowColor: 'gray',
     shadowOffset: {
       height: 2,
       width: 0,
     },
     shadowRadius: 10,
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.2,
   },
   detailsContainer: {
     padding: 20,
