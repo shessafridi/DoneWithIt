@@ -15,12 +15,23 @@ import AppText from './AppText';
 import Screen from './Screen';
 import PickerItem from './PickerItem';
 
-function AppPicker({ icon, items, placeholder, selectedItem, onSelectItem }) {
+function AppPicker({
+  icon,
+  items,
+  placeholder,
+  selectedItem,
+  onSelectItem,
+  onBlur,
+  width = '100%',
+}) {
   const [modalVisable, setModalVisable] = useState(false);
   return (
     <>
-      <TouchableWithoutFeedback onPress={() => setModalVisable(true)}>
-        <View style={styles.container}>
+      <TouchableWithoutFeedback
+        onBlur={onBlur}
+        onPress={() => setModalVisable(true)}
+      >
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -29,9 +40,14 @@ function AppPicker({ icon, items, placeholder, selectedItem, onSelectItem }) {
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem?.label || placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem?.label}</AppText>
+          ) : (
+            <AppText style={[styles.text, styles.placeholder]}>
+              {placeholder}
+            </AppText>
+          )}
+
           <MaterialCommunityIcons
             name='chevron-down'
             size={20}
@@ -66,7 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: 'row',
-    width: '100%',
     padding: 15,
     marginVertical: 10,
   },
@@ -75,6 +90,9 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+  },
+  placeholder: {
+    color: defaultStyles.colors.medium,
   },
 });
 
