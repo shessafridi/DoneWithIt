@@ -1,33 +1,39 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
-  Alert,
-} from 'react-native';
+import React, { useRef } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import ImageInput from "./ImageInput";
 
-function ImageInputList({ images, onPress }) {
+function ImageInputList({ imageUris = [], onRemoveImage, onAddImage }) {
+  const scrollView = useRef();
+
   return (
-    <>
-      {images.map((img, i) => (
-        <TouchableWithoutFeedback key={i} onPress={() => onPress(img)}>
-          <Image
-            style={styles.imageCard}
-            resizeMode='cover'
-            source={{ uri: img }}
-          />
-        </TouchableWithoutFeedback>
-      ))}
-    </>
+    <View>
+      <ScrollView
+        ref={scrollView}
+        horizontal
+        onContentSizeChange={() => scrollView.current.scrollToEnd()}
+      >
+        <View style={styles.container}>
+          {imageUris.map((uri) => (
+            <View key={uri} style={styles.image}>
+              <ImageInput
+                imageUri={uri}
+                onChangeImage={() => onRemoveImage(uri)}
+              />
+            </View>
+          ))}
+          <ImageInput onChangeImage={(uri) => onAddImage(uri)} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  imageCard: {
-    margin: 5,
-    height: 100,
-    width: 100,
-    borderRadius: 15,
+  container: {
+    flexDirection: "row",
+  },
+  image: {
+    marginRight: 10,
   },
 });
 

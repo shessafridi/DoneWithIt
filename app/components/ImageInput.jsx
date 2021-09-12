@@ -1,79 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableWithoutFeedback,
   Image,
+  TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 import colors from '../config/colors';
-import { ScrollView } from 'react-native-gesture-handler';
-import ImageInputList from './ImageInputList';
 
-function ImageInput({ images, onImageSelect, onDelete, onBlur }) {
+function ImageInput({ imageUri, onChangeImage }) {
   useEffect(() => {
     requestPermission();
   }, []);
 
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!granted)
-      alert('You need to enable permissions to access this library.');
+    if (!granted) alert('You need to enable permission to access the library.');
+  };
+
+  const handlePress = () => {
+    if (!imageUri) selectImage();
+    else
+      Alert.alert('Delete', 'Are you sure you want to delete this image?', [
+        { text: 'Yes', onPress: () => onChangeImage(null) },
+        { text: 'No' },
+      ]);
   };
 
   const selectImage = async () => {
     try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.cancelled) {
-        onImageSelect(result.uri);
-      }
-    } catch (e) {
-      console.log(e, 'Error reading the image');
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
+      });
+      if (!result.cancelled) onChangeImage(result.uri);
+    } catch (error) {
+      console.log('Error reading an image', error);
     }
-
-    onBlur();
   };
 
   return (
-    <ScrollView
-      snapToStart
-      snapToEnd
-      horizontal
-      contentContainerStyle={{ paddingHorizontal: 5 }}
-      style={styles.container}
-    >
-      <ImageInputList onPress={image => onDelete(image)} images={images} />
-      <TouchableWithoutFeedback onPress={selectImage}>
-        <View style={[styles.imageCard, styles.button]}>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri && (
           <MaterialCommunityIcons
-            name='camera'
             color={colors.medium}
-            size={35}
+            name='camera'
+            size={40}
           />
-        </View>
-      </TouchableWithoutFeedback>
-    </ScrollView>
+        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    width: '100%',
-  },
-  button: {
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: colors.light,
-  },
-  imageCard: {
-    margin: 5,
-    height: 100,
-    width: 100,
     borderRadius: 15,
+    height: 100,
+    justifyContent: 'center',
+    marginVertical: 10,
+    overflow: 'hidden',
+    width: 100,
+  },
+  image: {
+    height: '100%',
+    width: '100%',
   },
 });
 

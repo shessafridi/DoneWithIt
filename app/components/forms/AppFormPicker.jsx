@@ -20,7 +20,7 @@ function AppFormPicker({ name, width, numberOfColumns, ...otherProps }) {
         width={width}
         {...otherProps}
       />
-      <ErrorMessage visable={touched[name]} error={errors[name]} />
+      <ErrorMessage visible={touched[name]} error={errors[name]} />
     </>
   );
 }

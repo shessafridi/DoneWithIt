@@ -26,12 +26,12 @@ function AppPicker({
   onBlur,
   width = '100%',
 }) {
-  const [modalVisable, setModalVisable] = useState(false);
+  const [modalvisible, setModalvisible] = useState(false);
   return (
     <>
       <TouchableWithoutFeedback
         onBlur={onBlur}
-        onPress={() => setModalVisable(true)}
+        onPress={() => setModalvisible(true)}
       >
         <View style={[styles.container, { width }]}>
           {icon && (
@@ -57,9 +57,9 @@ function AppPicker({
           />
         </View>
       </TouchableWithoutFeedback>
-      <Modal hardwareAccelerated visible={modalVisable} animationType='slide'>
+      <Modal hardwareAccelerated visible={modalvisible} animationType='slide'>
         <Screen>
-          <Button title='Close' onPress={() => setModalVisable(false)} />
+          <Button title='Close' onPress={() => setModalvisible(false)} />
           <FlatList
             data={items}
             numColumns={numberOfColumns}
@@ -69,7 +69,7 @@ function AppPicker({
                 item={item}
                 onPress={() => {
                   onSelectItem(item);
-                  setModalVisable(false);
+                  setModalvisible(false);
                 }}
               />
             )}

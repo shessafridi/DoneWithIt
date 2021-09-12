@@ -16,7 +16,7 @@ function AppFormField({ items, name, placeholder, width, ...otherProps }) {
         width={width}
         {...otherProps}
       />
-      <ErrorMessage visable={touched[name]} error={errors[name]} />
+      <ErrorMessage visible={touched[name]} error={errors[name]} />
     </>
   );
 }
