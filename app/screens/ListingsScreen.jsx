@@ -6,6 +6,7 @@ import ListItemSeperator from '../components/ListItemSeparator';
 import Card from '../components/Card';
 import colors from '../config/colors';
 import { useNavigation } from '@react-navigation/core';
+import routes from '../navigation/routes';
 
 const listings = [
   {
@@ -37,7 +38,7 @@ function ListingsScreen(props) {
             title={item.title}
             subTitle={'$' + item.price}
             image={item.image}
-            onPress={() => navigation.push('ListingDetails', { item })}
+            onPress={() => navigation.push(routes.LISTING_DETAILS, { item })}
           />
         )}
         ItemSeparatorComponent={ListItemSeperator}
