@@ -38,7 +38,7 @@ function ListItem({
             <AppText numberOfLines={1} style={styles.title}>
               {title}
             </AppText>
-            {subTitle && (
+            {!!subTitle && (
               <AppText numberOfLines={2} style={styles.subTitle}>
                 {subTitle}
               </AppText>

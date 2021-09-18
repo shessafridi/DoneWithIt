@@ -1,10 +1,11 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import React from 'react';
 
 import Screen from '../components/Screen';
 import ListItemSeperator from '../components/ListItemSeparator';
 import Card from '../components/Card';
 import colors from '../config/colors';
+import { useNavigation } from '@react-navigation/core';
 
 const listings = [
   {
@@ -22,6 +23,8 @@ const listings = [
 ];
 
 function ListingsScreen(props) {
+  const navigation = useNavigation();
+  console.log(props, 'Listing Screen Props');
   return (
     <Screen style={styles.screen}>
       <FlatList
@@ -32,6 +35,7 @@ function ListingsScreen(props) {
             title={item.title}
             subTitle={'$' + item.price}
             image={item.image}
+            onPress={() => navigation.push('ListingDetails', { id: item.id })}
           />
         )}
         ItemSeparatorComponent={ListItemSeperator}
