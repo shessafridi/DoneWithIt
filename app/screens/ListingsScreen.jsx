@@ -28,6 +28,8 @@ function ListingsScreen(props) {
   return (
     <Screen style={styles.screen}>
       <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         data={listings}
         keyExtractor={listing => listing.id.toString()}
         renderItem={({ item }) => (
@@ -35,7 +37,7 @@ function ListingsScreen(props) {
             title={item.title}
             subTitle={'$' + item.price}
             image={item.image}
-            onPress={() => navigation.push('ListingDetails', { id: item.id })}
+            onPress={() => navigation.push('ListingDetails', { item })}
           />
         )}
         ItemSeparatorComponent={ListItemSeperator}
